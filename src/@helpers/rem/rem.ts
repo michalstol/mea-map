@@ -1,5 +1,4 @@
-const BASE_SIZE = 10;
-
+import { BASE_SIZE } from '@configs/styles';
 /**
  * Transform `px` -> `rem` based on the `BASE_SIZE` value.
  */
