@@ -9,7 +9,7 @@ import { useAuth } from '@hooks/useAuth';
 type FieldType = 'email' | 'password';
 
 function SignInForm(): React.ReactElement {
-    const user = useAuth();
+    const { loggedIn } = useAuth();
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
 
@@ -43,12 +43,12 @@ function SignInForm(): React.ReactElement {
 
     return (
         <Wrapper>
-            {user?.uid && (
+            {loggedIn && (
                 <button type="button" onClick={() => signOut(auth)}>
                     Sign out
                 </button>
             )}
-            {!user && (
+            {!loggedIn && (
                 <form onSubmit={onSubmit}>
                     <fieldset>
                         <input

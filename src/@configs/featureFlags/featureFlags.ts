@@ -1,6 +1,4 @@
-function booleanEnv(input?: string): boolean {
-    return input === 'true';
-}
+import { booleanEnv } from '@helpers/booleanEnv';
 
 interface FeatureFlagsParams {
     MAPBOX_ENABLED: boolean;
