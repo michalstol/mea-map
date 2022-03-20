@@ -13,11 +13,12 @@ import { GlobalStyles } from '@styles/GlobalStyles';
 
 import { AuthProvider } from '@hooks/useAuth';
 
-import { SignInForm } from '@ui/Organisms/SignInForm';
-
 import { HomePage } from '@pages/HomePage';
 import { SettingsPage } from '@pages/SettingsPage';
+
 import { MapBox } from '@ui/Organisms/MapBox';
+
+import { TempNav } from '@temps/TempNav';
 
 function App() {
     return (
@@ -25,20 +26,36 @@ function App() {
             <Provider store={store}>
                 <AuthProvider>
                     <GlobalStyles />
-                    <SignInForm />
+                    {/* <SignInForm /> */}
+
+                    {/* <HomePage> */}
+                    {/* <Menu /> */}
 
                     {FEATURE_FLAGS.MAPBOX_ENABLED && <MapBox />}
+                    {/* {FEATURE_FLAGS.MAPBOX_ENABLED && <Markers />} */}
+                    {/* {FEATURE_FLAGS.MAPBOX_ENABLED && <MapNavigation />} */}
+                    {/* </HomePage> */}
 
                     <BrowserRouter>
+                        {/* TEMPS */}
+                        <TempNav />
+                        {/* END TEMPS */}
+
+                        <HomePage />
+
                         <Routes>
-                            <Route
-                                path={ROUTES.HOME_PAGE}
-                                element={<HomePage />}
-                            />
                             <Route
                                 path={ROUTES.SETTINGS}
                                 element={<SettingsPage />}
                             />
+
+                            {/* HANDLE ISSUE WITH MATCHING LOCATIONS / ROUTES */}
+                            <Route
+                                path={ROUTES.HOME_PAGE}
+                                element={<React.Fragment />}
+                            >
+                                <Route index element={<React.Fragment />} />
+                            </Route>
                         </Routes>
                     </BrowserRouter>
                 </AuthProvider>

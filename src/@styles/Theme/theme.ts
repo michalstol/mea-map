@@ -43,8 +43,8 @@ const theme: DefaultTheme = {
         blue: '#0269fb',
         lightBlue: '#66a6fc',
         gray: '#999999',
-        lightGray: '#d5d5d5',
-        midGray: '#dedede',
+        lightGray: '#dedede',
+        midGray: '#d5d5d5',
         semiMidGray: '#a2a2a2',
         red: '#fb6c6c',
     },
@@ -72,6 +72,15 @@ const theme: DefaultTheme = {
         medium: rem(48),
         small: rem(40),
         tiny: rem(36),
+    },
+    zIndexes: {
+        base: 1,
+        menu: 10,
+        map: 20,
+        markers: 30,
+        navigation: 40,
+        modal: 100,
+        page: 200,
     },
 };
 

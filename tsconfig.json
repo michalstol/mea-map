@@ -31,7 +31,8 @@
       "@redux/*": ["@redux/*"],
       "@styles/*": ["@styles/*"],
       "@ui/*": ["@ui/*"],
-      "@facades/*": ["@facades/*"]
+      "@facades/*": ["@facades/*"],
+      "@temps/*": ["@temps/*"],
     }
   },
   "include": [

@@ -1,8 +1,9 @@
 enum ROUTES {
     HOME_PAGE = '/',
-    USER_LOCATIONS = '/locations',
+    MY_LOCATIONS = '/my-locations',
     HISTORY = '/history',
     SETTINGS = '/settings',
+    LOCATION = '/?location={locationValue}',
 }
 
 export { ROUTES };

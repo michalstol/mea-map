@@ -1,5 +1,14 @@
 import 'styled-components';
 
+export type ZIndexes =
+    | 'base'
+    | 'menu'
+    | 'markers'
+    | 'map'
+    | 'modal'
+    | 'navigation'
+    | 'page';
+
 declare module 'styled-components' {
     export interface DefaultTheme {
         fonts: {
@@ -68,6 +77,9 @@ declare module 'styled-components' {
             medium: string;
             small: string;
             tiny: string;
+        };
+        zIndexes: {
+            [key in ZIndexes]: number;
         };
     }
 }

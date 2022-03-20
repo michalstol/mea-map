@@ -8,7 +8,10 @@ enum STORAGE_NAMES {
 function setItem(key: STORAGE_NAMES, value: GenericObject): void {
     localStorage?.setItem(
         `${STORAGE_FACADE_PREFIX}${key}`,
-        JSON.stringify(value)
+        JSON.stringify({
+            ...value,
+            appVersion: process.env.REACT_APP_APP_VERSION,
+        })
     );
 }
 
@@ -27,15 +30,44 @@ function deleteItem(key: STORAGE_NAMES): boolean {
         return false;
     }
 
-    localStorage.removeItem(`${STORAGE_FACADE_PREFIX}${key}`);
+    localStorage?.removeItem(`${STORAGE_FACADE_PREFIX}${key}`);
 
     return true;
 }
 
-const storageFacade = {
-    set: setItem,
-    get: getItem,
-    delete: deleteItem,
-};
+/**
+ * Function handle moment when saved items have not supported app version.
+ */
+function checkSupportedVersion(): void {
+    const supportedVersion = +String(
+        process.env.REACT_APP_STORAGE_FACADE_SUPPORTED_APP_VERSION || 0
+    ).replaceAll('.', '');
+
+    Object.values(STORAGE_NAMES).map((value: STORAGE_NAMES): void => {
+        const itemVersion = +String(getItem(value)?.appVersion || 0).replaceAll(
+            '.',
+            ''
+        );
+
+        if (itemVersion < supportedVersion) {
+            console.warn('CLEARED STORAGE ITEM', {
+                value,
+                itemVersion,
+                supportedVersion,
+            });
+            deleteItem(value);
+        }
+    });
+}
+
+const storageFacade = (() => {
+    checkSupportedVersion();
+
+    return {
+        set: setItem,
+        get: getItem,
+        delete: deleteItem,
+    };
+})();
 
 export { STORAGE_NAMES, storageFacade };

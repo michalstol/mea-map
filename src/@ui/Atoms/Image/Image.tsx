@@ -10,8 +10,8 @@ interface WrapperProps {
 }
 
 interface Props extends WrapperProps {
-    alt: string;
     src: string;
+    alt?: string;
     className?: string;
 }
 
