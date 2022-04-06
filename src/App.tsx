@@ -26,7 +26,6 @@ function App() {
             <Provider store={store}>
                 <AuthProvider>
                     <GlobalStyles />
-                    {/* <SignInForm /> */}
 
                     {/* <HomePage> */}
                     {/* <Menu /> */}

@@ -1,17 +1,17 @@
 import React from 'react';
 import { debounce } from 'throttle-debounce';
 
-function useWindowSize() {
-    const [windowSize, setWindowSize] = React.useState({
-        width: window.innerWidth,
-        height: window.innerHeight,
+function useScreenSize() {
+    const [size, setSize] = React.useState({
+        width: window.screen.width,
+        height: window.screen.height,
     });
 
     React.useEffect(() => {
         function handleResize() {
-            setWindowSize({
-                width: window.innerWidth,
-                height: window.innerHeight,
+            setSize({
+                width: window.screen.width,
+                height: window.screen.height,
             });
         }
 
@@ -20,7 +20,8 @@ function useWindowSize() {
         return () =>
             window.removeEventListener('resize', debounce(100, handleResize));
     }, []);
-    return windowSize;
+
+    return size;
 }
 
-export { useWindowSize };
+export { useScreenSize };

@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
+import { ScreenLayer } from '@ui/Molecules/ScreenLayer';
+
 const duration = 500;
 
 interface Props {
@@ -16,12 +18,16 @@ function Page(props: Props): React.ReactElement {
         return () => clearTimeout(initPage);
     }, []);
 
-    return <Container isReady={isReady}>{props.children}</Container>;
+    return (
+        <Container isReady={isReady} height>
+            {props.children}
+        </Container>
+    );
 }
 
 export { Page };
 
-const Container = styled.div<{ isReady: boolean }>`
+const Container = styled(ScreenLayer)<{ isReady: boolean }>`
     /* TODO: replace this animation by framer-motion */
     @keyframes openPageAnimation {
         from {

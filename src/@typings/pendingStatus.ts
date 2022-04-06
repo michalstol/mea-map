@@ -1,0 +1,8 @@
+enum PENDING_STATUS {
+    IDLE = 'IDLE',
+    PENDING = 'PENDING',
+    SUCCESSED = 'SUCCESSED',
+    FAILED = 'FAILED',
+}
+
+export { PENDING_STATUS };
