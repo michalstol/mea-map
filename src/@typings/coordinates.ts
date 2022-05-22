@@ -1,6 +1,4 @@
-interface Coordinates {
-    lat: number;
+export interface Coordinates {
     lng: number;
+    lat: number;
 }
-
-export type { Coordinates };

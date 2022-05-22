@@ -3,12 +3,13 @@ import { onAuthStateChanged } from 'firebase/auth';
 
 import { auth } from '@configs/firebase';
 
-import { UserDTO } from '@typings/user';
+import { STORAGE_NAMES } from '@typings/storage';
+import { FirebaseUser } from '@typings/users';
 
-import { STORAGE_NAMES, storageFacade } from '@facades/storageFacade';
+import { storageFacade } from '@facades/storageFacade';
 
 interface BaseAuthContextProps {
-    user: UserDTO;
+    user: FirebaseUser | null;
     loggedIn: boolean;
 }
 
@@ -30,7 +31,9 @@ interface AuthProviderProps {
 }
 
 function AuthProvider(props: AuthProviderProps): React.ReactElement {
-    const [user, setUser] = React.useState<UserDTO>(initialState.user);
+    const [user, setUser] = React.useState<FirebaseUser | null>(
+        initialState.user
+    );
     const [connected, setConnected] = React.useState(false);
 
     React.useEffect(() => {

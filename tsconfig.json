@@ -1,41 +1,27 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
     "skipLibCheck": true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "baseUrl": "src",
     "paths": {
-      "__mocks__/*": ["__mocks__/*"],
-      "@assets/*": ["@assets/*"],
-      "@configs/*": ["@configs/*"],
-      "@typings/*": ["@typings/*"],
-      "@hooks/*": ["@hooks/*"],
-      "@helpers/*": ["@helpers/*"],
-      "@pages/*": ["@pages/*"],
-      "@redux/*": ["@redux/*"],
-      "@styles/*": ["@styles/*"],
-      "@ui/*": ["@ui/*"],
-      "@facades/*": ["@facades/*"],
-      "@temps/*": ["@temps/*"],
-    }
+      "@configs/*": ["./src/@configs/*"],
+      "@facades/*": ["./src/@facades/*"],
+      "@typings/*": ["./src/@typings/*"],
+      "@hooks/*": ["./src/@hooks/*"],
+    },
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }
