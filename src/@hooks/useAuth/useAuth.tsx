@@ -58,9 +58,9 @@ function AuthProvider(props: AuthProviderProps): React.ReactElement {
     return (
         <AuthContext.Provider
             value={{
+                connected,
                 user: user,
-                connected: true,
-                loggedIn: !!user,
+                loggedIn: !!user && connected,
             }}
         >
             {props.children}

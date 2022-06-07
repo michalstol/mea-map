@@ -16,12 +16,20 @@ export default defineConfig({
                 replacement: path.resolve(__dirname, './src/@facades'),
             },
             {
+                find: '@redux',
+                replacement: path.resolve(__dirname, './src/@redux'),
+            },
+            {
                 find: '@typings',
                 replacement: path.resolve(__dirname, './src/@typings'),
             },
             {
                 find: '@hooks',
                 replacement: path.resolve(__dirname, './src/@hooks'),
+            },
+            {
+                find: '@temps',
+                replacement: path.resolve(__dirname, './src/@temps'),
             },
         ],
     },

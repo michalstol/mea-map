@@ -18,8 +18,10 @@
     "paths": {
       "@configs/*": ["./src/@configs/*"],
       "@facades/*": ["./src/@facades/*"],
+      "@redux/*": ["./src/@redux/*"],
       "@typings/*": ["./src/@typings/*"],
       "@hooks/*": ["./src/@hooks/*"],
+      "@temps/*": ["./src/@temps/*"],
     },
   },
   "include": ["src"],

@@ -17,3 +17,5 @@ const app = initializeApp({
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 // const analytics = getAnalytics(app);
+
+console.log(auth);
