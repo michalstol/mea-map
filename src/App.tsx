@@ -4,11 +4,16 @@ import { store } from '@redux/store';
 
 import { AuthProvider } from '@hooks/useAuth';
 
-import { AddMarker } from '@temps/AddMarker';
 import { AppState } from '@temps/AppState';
-import { FetchMarkers } from '@temps/FetchMarkers';
 import { SignIn } from '@temps/SignIn';
+
+import { AddMarker } from '@temps/AddMarker';
+import { FetchMarkers } from '@temps/FetchMarkers';
 import { ListOfMarkers } from '@temps/ListOfMarkers';
+
+import { FetchCategories } from '@temps/FetchCategories';
+import { AddCategory } from '@temps/AddCategory';
+import { ListOfCategories } from '@temps/ListOfCategories';
 
 function App() {
     return (
@@ -16,8 +21,14 @@ function App() {
             <AuthProvider>
                 <AppState />
                 <SignIn />
+
+                <FetchCategories />
+                <AddCategory />
+
                 <FetchMarkers />
                 <AddMarker />
+
+                <ListOfCategories />
                 <ListOfMarkers />
             </AuthProvider>
         </Provider>

@@ -1,5 +1,3 @@
-import { List, Record } from 'immutable';
-
 import { LOADING_STATE } from '@typings/loadingState';
 import { Marker } from '@typings/markers';
 

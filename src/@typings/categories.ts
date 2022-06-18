@@ -16,7 +16,7 @@ export interface CategoryDTO {
 }
 
 export interface Category {
-    uuid: Uuid;
+    uuid: Uuid | null;
     name: string;
     color: string;
     icon: ICONS;
