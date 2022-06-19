@@ -12,6 +12,7 @@ const markersInitialState: MarkersState = {
     fetchState: LOADING_STATE.IDLE,
     markerState: LOADING_STATE.IDLE,
     data: [],
+    groupedByCategory: {},
 };
 
 const markersSlice = createSlice({

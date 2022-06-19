@@ -3,6 +3,7 @@ import { ActionReducerMapBuilder } from '@reduxjs/toolkit';
 import { LOADING_STATE } from '@typings/loadingState';
 
 import { MarkersState } from '../markers.typings';
+import { groupMarkersByCategory } from '../markers.factories';
 import { deleteMarkerAction } from './deleteMarker.action';
 
 const deleteMarkerReducer = (builder: ActionReducerMapBuilder<MarkersState>) =>
@@ -21,6 +22,7 @@ const deleteMarkerReducer = (builder: ActionReducerMapBuilder<MarkersState>) =>
             state.data = state.data.filter(
                 marker => marker.uuid !== action.payload
             );
+            state.groupedByCategory = groupMarkersByCategory(state.data);
         });
 
 export { deleteMarkerReducer };

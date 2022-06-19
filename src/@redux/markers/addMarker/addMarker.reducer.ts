@@ -1,6 +1,7 @@
 import { ActionReducerMapBuilder } from '@reduxjs/toolkit';
 
 import { LOADING_STATE } from '@typings/loadingState';
+import { groupMarkersByCategory } from '../markers.factories';
 
 import { MarkersState } from '../markers.typings';
 import { addMarkerAction } from './addMarker.action';
@@ -18,6 +19,7 @@ const addMarkerReducer = (builder: ActionReducerMapBuilder<MarkersState>) =>
 
             if (action.payload) {
                 state.data.push(action.payload);
+                state.groupedByCategory = groupMarkersByCategory(state.data);
             }
         });
 

@@ -1,3 +1,4 @@
+import { GenericObject } from '@typings/genericObject';
 import { LOADING_STATE } from '@typings/loadingState';
 import { Marker } from '@typings/markers';
 
@@ -11,4 +12,7 @@ const getMarkerState = (state: RootState): LOADING_STATE =>
 
 const getMarkers = (state: RootState): Marker[] => state.markers.data;
 
-export { getFetchStatus, getMarkerState, getMarkers };
+const getGroupedMarkers = (state: RootState): GenericObject<Marker[]> =>
+    state.markers.groupedByCategory;
+
+export { getFetchStatus, getMarkerState, getMarkers, getGroupedMarkers };

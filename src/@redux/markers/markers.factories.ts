@@ -1,6 +1,7 @@
 import { Timestamp } from 'firebase/firestore';
 
 import { Uuid } from '@typings/common';
+import { GenericObject } from '@typings/genericObject';
 import { Marker, MarkerDTO } from '@typings/markers';
 import { SharedUser, SharedUserDTO } from '@typings/shared';
 import { USER_PERMISSIONS } from '@typings/users';
@@ -32,4 +33,21 @@ function markerFactoryToDTO(marker: Marker): MarkerDTO {
     return markerDTO;
 }
 
-export { markerFactoryFromDTO, markerFactoryToDTO };
+function groupMarkersByCategory(
+    markers: Marker[],
+    currentData: GenericObject<Marker[]> = {}
+): GenericObject<Marker[]> {
+    const result: GenericObject<Marker[]> = { ...currentData };
+
+    for (let marker of markers) {
+        if (!result[marker.category]) {
+            result[marker.category] = [];
+        }
+
+        result[marker.category].push(marker);
+    }
+
+    return result;
+}
+
+export { markerFactoryFromDTO, markerFactoryToDTO, groupMarkersByCategory };

@@ -1,3 +1,4 @@
+import { GenericObject } from '@typings/genericObject';
 import { LOADING_STATE } from '@typings/loadingState';
 import { Marker } from '@typings/markers';
 
@@ -13,5 +14,8 @@ export enum MARKERS_ACTIONS {
 export interface MarkersState {
     fetchState: LOADING_STATE;
     markerState: LOADING_STATE;
+
+    // sorted markers by category
     data: Marker[];
+    groupedByCategory: GenericObject<Marker[]>;
 }
