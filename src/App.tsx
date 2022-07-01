@@ -1,7 +1,9 @@
 import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 
-import { appTheme } from '@styles/Theme';
+import { theme } from '@styles/Theme';
+import { GlobalStyle } from '@styles/GlobalStyle';
+import '@styles/Typography/typography.css';
 
 import { store } from '@redux/store';
 
@@ -24,7 +26,9 @@ function App() {
     return (
         <Provider store={store}>
             <AuthProvider>
-                <ThemeProvider theme={appTheme}>
+                <ThemeProvider theme={theme}>
+                    <GlobalStyle />
+
                     <AppState />
                     <SignIn />
 
