@@ -1,4 +1,7 @@
 import { Provider } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
+
+import { appTheme } from '@styles/Theme';
 
 import { store } from '@redux/store';
 
@@ -21,21 +24,23 @@ function App() {
     return (
         <Provider store={store}>
             <AuthProvider>
-                <AppState />
-                <SignIn />
+                <ThemeProvider theme={appTheme}>
+                    <AppState />
+                    <SignIn />
 
-                <MapProvider>
-                    <Map />
+                    <MapProvider>
+                        <Map />
 
-                    <FetchCategories />
-                    <AddCategory />
+                        <FetchCategories />
+                        <AddCategory />
 
-                    <FetchMarkers />
-                    <AddMarker />
+                        <FetchMarkers />
+                        <AddMarker />
 
-                    <ListOfCategories />
-                    <ListOfMarkers />
-                </MapProvider>
+                        <ListOfCategories />
+                        <ListOfMarkers />
+                    </MapProvider>
+                </ThemeProvider>
             </AuthProvider>
         </Provider>
     );

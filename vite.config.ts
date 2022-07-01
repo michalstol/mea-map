@@ -28,6 +28,10 @@ export default defineConfig({
                 replacement: path.resolve(__dirname, './src/@hooks'),
             },
             {
+                find: '@styles',
+                replacement: path.resolve(__dirname, './src/@styles'),
+            },
+            {
                 find: '@temps',
                 replacement: path.resolve(__dirname, './src/@temps'),
             },
