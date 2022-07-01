@@ -7,6 +7,7 @@ import { SharedUser, SharedUserDTO } from './shared';
 export interface MarkerDTO {
     name: string;
     address: string;
+    description: string | null;
     coordinates: Coordinates;
     category: Uuid;
     createdBy: Uuid;
@@ -18,6 +19,7 @@ export interface Marker {
     uuid: Uuid | null;
     name: string;
     address: string;
+    description: string | null;
     coordinates: Coordinates;
     category: Uuid;
     createdBy: Uuid;

@@ -1,31 +1,32 @@
-import { Timestamp } from 'firebase/firestore';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { useAppDispatch } from '@redux/hooks';
-import { addCategoryAction } from '@redux/categories';
+import {
+    addCategoryAction,
+    getFetchStatus,
+    getCategories,
+} from '@redux/categories';
 
 import { Category } from '@typings/categories';
 import { useAuth } from '@hooks/useAuth';
-import { ICONS } from '@typings/icons';
+
+import { FormCreateCategory } from '@temps/FormCreateCategory';
+import { LOADING_STATE } from '@typings/loadingState';
 
 function AddCategory(): React.ReactElement | null {
     const dispatch = useAppDispatch();
     const { user } = useAuth();
 
-    const createCategory = () => {
-        const timestamp = Timestamp.now().toMillis();
+    const [showForm, setShowForm] = React.useState(false);
 
-        const newCategory: Category = {
-            uuid: null,
-            name: 'test category',
-            color: '#fff000',
-            icon: ICONS.FAVORITE,
-            order: 1,
-            createdBy: user!.uid,
-            createAt: timestamp,
-            updatedOn: timestamp,
-            sharedFor: [],
-        };
+    const isCategoriesFetched =
+        useSelector(getFetchStatus) === LOADING_STATE.FULFILLED;
+    const categories = useSelector(getCategories);
 
+    const toggleForm = () => setShowForm(!showForm);
+
+    const createCategory = (newCategory: Category) => {
         dispatch(
             addCategoryAction({
                 category: newCategory,
@@ -39,7 +40,17 @@ function AddCategory(): React.ReactElement | null {
 
     return (
         <div>
-            <button onClick={createCategory}>Create Category</button>
+            <button onClick={toggleForm} disabled={!isCategoriesFetched}>
+                Create Category
+            </button>
+
+            {showForm && (
+                <FormCreateCategory
+                    userUuid={user.uid}
+                    nextOrder={categories.length}
+                    create={createCategory}
+                />
+            )}
         </div>
     );
 }

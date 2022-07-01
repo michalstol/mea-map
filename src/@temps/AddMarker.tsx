@@ -1,35 +1,31 @@
-import { Timestamp } from 'firebase/firestore';
+import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { useAppDispatch } from '@redux/hooks';
 import { addMarkerAction } from '@redux/markers';
+import { getFetchStatus, getCategories } from '@redux/categories';
 
 import { Marker } from '@typings/markers';
+import { LOADING_STATE } from '@typings/loadingState';
+
 import { useAuth } from '@hooks/useAuth';
+
+import { FormCreateMarker } from './FormCreateMarker';
 
 function AddMarker(): React.ReactElement | null {
     const dispatch = useAppDispatch();
     const { user } = useAuth();
 
-    const createMarker = () => {
-        const newMarker: Marker = {
-            uuid: null,
-            name: 'test marker',
-            address: 'Broniwoja 6/80, 02-655 Warszawa',
-            coordinates: {
-                lat: 50.02123,
-                lng: 12.54354,
-            },
-            category: 'test category',
-            createdBy: user!.uid,
-            createAt: Timestamp.now().toMillis(),
-            sharedFor: [],
-        };
+    const [showForm, setShowForm] = React.useState(false);
 
-        dispatch(
-            addMarkerAction({
-                marker: newMarker,
-            })
-        );
+    const isCategoriesFetched =
+        useSelector(getFetchStatus) === LOADING_STATE.FULFILLED;
+    const categories = useSelector(getCategories);
+
+    const toggleForm = () => setShowForm(!showForm);
+
+    const createMarker = (newMarker: Marker) => {
+        dispatch(addMarkerAction({ marker: newMarker }));
     };
 
     if (!user) {
@@ -38,7 +34,17 @@ function AddMarker(): React.ReactElement | null {
 
     return (
         <div>
-            <button onClick={createMarker}>Create Marker</button>
+            <button onClick={toggleForm} disabled={!isCategoriesFetched}>
+                Create Marker
+            </button>
+
+            {showForm && (
+                <FormCreateMarker
+                    userUuid={user.uid}
+                    categories={categories}
+                    create={createMarker}
+                />
+            )}
         </div>
     );
 }
