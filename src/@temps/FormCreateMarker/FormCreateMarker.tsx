@@ -6,6 +6,8 @@ import { Uuid } from '@typings/common';
 import { Marker } from '@typings/markers';
 import { Category } from '@typings/categories';
 
+import { MapContextProps } from '@hooks/useMap';
+
 import {
     MARKER_FIELDS,
     MarkerFormValues,
@@ -16,17 +18,27 @@ import {
 
 interface Props {
     userUuid: Uuid;
+    coordinates: MapContextProps['pointed'];
     categories: Category[];
     create: (marker: Marker) => void;
 }
 
 function FormCreateMarker(props: Props): React.ReactElement {
+    const selectedCoordinates = {
+        [MARKER_FIELDS.LAT]: props.coordinates?.lat || '',
+        [MARKER_FIELDS.LNG]: props.coordinates?.lng || '',
+    };
+
     return (
         <Formik<MarkerFormValues>
-            initialValues={{ ...markerInitialValues }}
+            initialValues={{
+                ...markerInitialValues,
+                ...(selectedCoordinates as MarkerFormValues),
+            }}
             validationSchema={createMarkerSchema}
             validateOnChange={false}
             validateOnBlur={false}
+            enableReinitialize
             onSubmit={({ lat, lng, description, ...data }) => {
                 const newMarker: Marker = {
                     ...data,

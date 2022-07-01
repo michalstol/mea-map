@@ -9,12 +9,14 @@ import { Marker } from '@typings/markers';
 import { LOADING_STATE } from '@typings/loadingState';
 
 import { useAuth } from '@hooks/useAuth';
+import { useMap } from '@hooks/useMap';
 
 import { FormCreateMarker } from './FormCreateMarker';
 
 function AddMarker(): React.ReactElement | null {
     const dispatch = useAppDispatch();
     const { user } = useAuth();
+    const { pointed } = useMap();
 
     const [showForm, setShowForm] = React.useState(false);
 
@@ -41,6 +43,7 @@ function AddMarker(): React.ReactElement | null {
             {showForm && (
                 <FormCreateMarker
                     userUuid={user.uid}
+                    coordinates={pointed}
                     categories={categories}
                     create={createMarker}
                 />

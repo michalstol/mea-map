@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { store } from '@redux/store';
 
 import { AuthProvider } from '@hooks/useAuth';
+import { MapProvider } from '@hooks/useMap';
 
 import { AppState } from '@temps/AppState';
 import { SignIn } from '@temps/SignIn';
@@ -14,6 +15,7 @@ import { ListOfMarkers } from '@temps/ListOfMarkers';
 import { FetchCategories } from '@temps/FetchCategories';
 import { AddCategory } from '@temps/AddCategory';
 import { ListOfCategories } from '@temps/ListOfCategories';
+import { Map } from '@temps/Map';
 
 function App() {
     return (
@@ -22,14 +24,18 @@ function App() {
                 <AppState />
                 <SignIn />
 
-                <FetchCategories />
-                <AddCategory />
+                <MapProvider>
+                    <Map />
 
-                <FetchMarkers />
-                <AddMarker />
+                    <FetchCategories />
+                    <AddCategory />
 
-                <ListOfCategories />
-                <ListOfMarkers />
+                    <FetchMarkers />
+                    <AddMarker />
+
+                    <ListOfCategories />
+                    <ListOfMarkers />
+                </MapProvider>
             </AuthProvider>
         </Provider>
     );
