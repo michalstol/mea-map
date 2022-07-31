@@ -7,25 +7,25 @@ import styled from 'styled-components';
 import { useMap } from '@hooks/useMap';
 
 function Map(): React.ReactElement {
-    const { setPointed, pointed } = useMap();
-    const [delay, setDelay] = React.useState(false);
+    // const { setPointed, pointed } = useMap();
+    // const [delay, setDelay] = React.useState(false);
 
-    const onClickHandler = (
-        e: MapLayerMouseEvent | MapLayerTouchEvent
-    ): void => {
-        if (!!pointed || delay) return;
+    // const onClickHandler = (
+    //     e: MapLayerMouseEvent | MapLayerTouchEvent
+    // ): void => {
+    //     if (!!pointed || delay) return;
 
-        setPointed(e.lngLat);
-    };
+    //     setPointed(e.lngLat);
+    // };
 
-    const onRemoveHandler = () => {
-        if (!pointed || delay) return;
+    // const onRemoveHandler = () => {
+    //     if (!pointed || delay) return;
 
-        setPointed(null);
-        setDelay(true);
+    //     setPointed(null);
+    //     setDelay(true);
 
-        setTimeout(() => setDelay(false), 100);
-    };
+    //     setTimeout(() => setDelay(false), 100);
+    // };
 
     return (
         <MapWrapper>
@@ -38,9 +38,9 @@ function Map(): React.ReactElement {
                 style={{ width: '100%', height: '100%' }}
                 mapStyle="mapbox://styles/mapbox/streets-v11"
                 mapboxAccessToken={import.meta.env.VITE_MAPBOX_API_KEY}
-                onClick={onClickHandler}
+                // onClick={onClickHandler}
             >
-                {!!pointed && (
+                {/* {!!pointed && (
                     <Marker
                         longitude={pointed.lng}
                         latitude={pointed.lat}
@@ -50,7 +50,7 @@ function Map(): React.ReactElement {
                     >
                         <Img src="https://developers.google.com/maps/images/maps-icon.svg" />
                     </Marker>
-                )}
+                )} */}
             </MapGL>
         </MapWrapper>
     );

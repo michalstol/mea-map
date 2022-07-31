@@ -32,6 +32,14 @@ export default defineConfig({
                 replacement: path.resolve(__dirname, './src/@styles'),
             },
             {
+                find: '@features',
+                replacement: path.resolve(__dirname, './src/@features'),
+            },
+            {
+                find: '@helpers',
+                replacement: path.resolve(__dirname, './src/@helpers'),
+            },
+            {
                 find: '@temps',
                 replacement: path.resolve(__dirname, './src/@temps'),
             },

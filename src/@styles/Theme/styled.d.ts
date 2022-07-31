@@ -18,5 +18,18 @@ declare module 'styled-components' {
                 extraBold: number;
             };
         };
+        scale: {
+            half: string;
+            base: string;
+            base_x2: string;
+            base_x3: string;
+            base_x4: string;
+            base_x5: string;
+            base_x6: string;
+            base_x7: string;
+            base_x8: string;
+            base_x9: string;
+            base_x10: string;
+        };
     }
 }

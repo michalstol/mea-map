@@ -9,6 +9,7 @@ import { store } from '@redux/store';
 
 import { AuthProvider } from '@hooks/useAuth';
 import { MapProvider } from '@hooks/useMap';
+import { ControlButtonProvider } from '@hooks/useControlButton';
 
 import { AppState } from '@temps/AppState';
 import { SignIn } from '@temps/SignIn';
@@ -21,18 +22,25 @@ import { FetchCategories } from '@temps/FetchCategories';
 import { AddCategory } from '@temps/AddCategory';
 import { ListOfCategories } from '@temps/ListOfCategories';
 import { Map } from '@temps/Map';
+import { SearchPlace } from '@temps/SearchPlace';
+
+import { ControlButton } from '@features/ControlButton';
 
 function App() {
     return (
         <Provider store={store}>
             <AuthProvider>
-                <ThemeProvider theme={theme}>
-                    <GlobalStyle />
+                <ControlButtonProvider>
+                    <ThemeProvider theme={theme}>
+                        <GlobalStyle />
 
-                    <AppState />
-                    <SignIn />
+                        <AppState />
+                        <SignIn />
 
-                    <MapProvider>
+                        <ControlButton />
+
+                        {/* <MapProvider>
+                        <SearchPlace />
                         <Map />
 
                         <FetchCategories />
@@ -43,8 +51,9 @@ function App() {
 
                         <ListOfCategories />
                         <ListOfMarkers />
-                    </MapProvider>
-                </ThemeProvider>
+                    </MapProvider> */}
+                    </ThemeProvider>
+                </ControlButtonProvider>
             </AuthProvider>
         </Provider>
     );
