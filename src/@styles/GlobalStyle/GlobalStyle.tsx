@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
         font-size: ${props => props.theme.fonts.size.body};
         font-weight: ${props => props.theme.fonts.weight.regular};
         line-height: ${props => props.theme.fonts.lineHeight.body};
-        color: ${props => props.theme.pallete.black};
+        color: rgb(${props => props.theme.pallete.black});
         background-color: rgb(${props => props.theme.pallete.white});
     }
 

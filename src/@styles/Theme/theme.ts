@@ -38,6 +38,7 @@ const theme: DefaultTheme = {
         base: rem(baseScale),
         base_x1_5: rem(baseScale * 1.5),
         base_x2: rem(baseScale * 2),
+        base_x2_5: rem(baseScale * 2.5),
         base_x3: rem(baseScale * 3),
         base_x4: rem(baseScale * 4),
         base_x5: rem(baseScale * 5),
