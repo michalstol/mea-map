@@ -1,0 +1,160 @@
+export default interface Colors {
+    white: string;
+    black: string;
+    gray: {
+        gray_000: string;
+        gray_100: string;
+        gray_200: string;
+        gray_300: string;
+        gray_400: string;
+        gray_500: string;
+        gray_600: string;
+        gray_700: string;
+        gray_800: string;
+        gray_900: string;
+    };
+    red: {
+        red_000: string;
+        red_100: string;
+        red_200: string;
+        red_300: string;
+        red_400: string;
+        red_500: string;
+        red_600: string;
+        red_700: string;
+        red_800: string;
+        red_900: string;
+    };
+    pink: {
+        pink_000: string;
+        pink_100: string;
+        pink_200: string;
+        pink_300: string;
+        pink_400: string;
+        pink_500: string;
+        pink_600: string;
+        pink_700: string;
+        pink_800: string;
+        pink_900: string;
+    };
+    grape: {
+        grape_000: string;
+        grape_100: string;
+        grape_200: string;
+        grape_300: string;
+        grape_400: string;
+        grape_500: string;
+        grape_600: string;
+        grape_700: string;
+        grape_800: string;
+        grape_900: string;
+    };
+    violet: {
+        violet_000: string;
+        violet_100: string;
+        violet_200: string;
+        violet_300: string;
+        violet_400: string;
+        violet_500: string;
+        violet_600: string;
+        violet_700: string;
+        violet_800: string;
+        violet_900: string;
+    };
+    indigo: {
+        indigo_000: string;
+        indigo_100: string;
+        indigo_200: string;
+        indigo_300: string;
+        indigo_400: string;
+        indigo_500: string;
+        indigo_600: string;
+        indigo_700: string;
+        indigo_800: string;
+        indigo_900: string;
+    };
+    blue: {
+        blue_000: string;
+        blue_100: string;
+        blue_200: string;
+        blue_300: string;
+        blue_400: string;
+        blue_500: string;
+        blue_600: string;
+        blue_700: string;
+        blue_800: string;
+        blue_900: string;
+    };
+    cyan: {
+        cyan_000: string;
+        cyan_100: string;
+        cyan_200: string;
+        cyan_300: string;
+        cyan_400: string;
+        cyan_500: string;
+        cyan_600: string;
+        cyan_700: string;
+        cyan_800: string;
+        cyan_900: string;
+    };
+    teal: {
+        teal_000: string;
+        teal_100: string;
+        teal_200: string;
+        teal_300: string;
+        teal_400: string;
+        teal_500: string;
+        teal_600: string;
+        teal_700: string;
+        teal_800: string;
+        teal_900: string;
+    };
+    green: {
+        green_000: string;
+        green_100: string;
+        green_200: string;
+        green_300: string;
+        green_400: string;
+        green_500: string;
+        green_600: string;
+        green_700: string;
+        green_800: string;
+        green_900: string;
+    };
+    lime: {
+        lime_000: string;
+        lime_100: string;
+        lime_200: string;
+        lime_300: string;
+        lime_400: string;
+        lime_500: string;
+        lime_600: string;
+        lime_700: string;
+        lime_800: string;
+        lime_900: string;
+    };
+    yellow: {
+        yellow_000: string;
+        yellow_100: string;
+        yellow_200: string;
+        yellow_300: string;
+        yellow_400: string;
+        yellow_500: string;
+        yellow_600: string;
+        yellow_700: string;
+        yellow_800: string;
+        yellow_900: string;
+    };
+    orange: {
+        orange_000: string;
+        orange_100: string;
+        orange_200: string;
+        orange_300: string;
+        orange_400: string;
+        orange_500: string;
+        orange_600: string;
+        orange_700: string;
+        orange_800: string;
+        orange_900: string;
+    };
+}

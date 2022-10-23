@@ -36,6 +36,24 @@ export default defineConfig({
                 replacement: path.resolve(__dirname, './src/@features'),
             },
             {
+                find: '@atoms',
+                replacement: path.resolve(__dirname, './src/@components/Atoms'),
+            },
+            {
+                find: '@molecules',
+                replacement: path.resolve(
+                    __dirname,
+                    './src/@components/Molecules'
+                ),
+            },
+            {
+                find: '@organizms',
+                replacement: path.resolve(
+                    __dirname,
+                    './src/@components/Organizms'
+                ),
+            },
+            {
                 find: '@helpers',
                 replacement: path.resolve(__dirname, './src/@helpers'),
             },

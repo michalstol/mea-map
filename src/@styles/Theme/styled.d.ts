@@ -1,5 +1,8 @@
 import 'styled-components';
 
+import Colors from './colors.d';
+import Pallete from './pallete.d';
+
 declare module 'styled-components' {
     export interface DefaultTheme {
         fonts: {
@@ -8,19 +11,29 @@ declare module 'styled-components' {
                 materialSymbols: string;
             };
             weight: {
-                thin: number;
-                extraLight: number;
                 light: number;
                 regular: number;
-                medium: number;
-                semiBold: number;
-                bold: number;
-                extraBold: number;
+                semibold: number;
+            };
+            size: {
+                body: string;
+                bodySmall: string;
+                heading: string;
+                headingSmall: string;
+                caption: string;
+            };
+            lineHeight: {
+                body: string;
+                bodySmall: string;
+                heading: string;
+                headingSmall: string;
+                caption: string;
             };
         };
-        scale: {
+        sizes: {
             half: string;
             base: string;
+            base_x1_5: string;
             base_x2: string;
             base_x3: string;
             base_x4: string;
@@ -30,6 +43,15 @@ declare module 'styled-components' {
             base_x8: string;
             base_x9: string;
             base_x10: string;
+        };
+        pallete: Pallete;
+        colors: Colors;
+        shadows: {
+            normal: string;
+        };
+        zIndexes: {
+            controlButton: number;
+            search: number;
         };
     }
 }
