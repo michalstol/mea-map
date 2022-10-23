@@ -25,6 +25,9 @@ import { Map } from '@temps/Map';
 import { SearchPlace } from '@temps/SearchPlace';
 
 import { ControlButton } from '@features/ControlButton';
+import Search from '@features/Search';
+
+import Grid from '@atoms/Grid';
 
 function App() {
     return (
@@ -37,7 +40,19 @@ function App() {
                         <AppState />
                         <SignIn />
 
-                        <ControlButton />
+                        <Grid.Container>
+                            <Grid.Row>
+                                <Grid.Column size="min">
+                                    <ControlButton />
+                                </Grid.Column>
+
+                                <Grid.Column size="max">
+                                    <Search.Field />
+                                </Grid.Column>
+                            </Grid.Row>
+                        </Grid.Container>
+
+                        <Search.Results />
 
                         {/* <MapProvider>
                         <SearchPlace />

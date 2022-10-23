@@ -14,12 +14,13 @@ type MappedStates = {
 
 const mappedStates: MappedStates = {
     [CONTROL_BUTTON_STATES.MENU]: 'menu',
+    [CONTROL_BUTTON_STATES.BACK]: 'back',
     [CONTROL_BUTTON_STATES.CLOSE]: 'close',
     [CONTROL_BUTTON_STATES.HIDE]: '',
 };
 
 function ControlButtonComponent(): React.ReactElement {
-    const { state, onClick } = useControlButton();
+    const { state, ref } = useControlButton();
     const icon = React.useCallback(
         () =>
             getCase<string>(state, {
@@ -30,11 +31,7 @@ function ControlButtonComponent(): React.ReactElement {
     );
 
     return (
-        <Button
-            type="button"
-            className="material-symbols-outlined"
-            onClick={onClick}
-        >
+        <Button ref={ref} type="button" className="material-symbols-outlined">
             {icon()}
         </Button>
     );
