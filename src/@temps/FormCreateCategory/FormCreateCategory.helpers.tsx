@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-import { ICONS } from '@typings/icons';
+import { ICON_NAME } from '@typings/icons';
 
 export enum CATEGORY_FIELDS {
     NAME = 'name',
@@ -11,7 +11,7 @@ export enum CATEGORY_FIELDS {
 export interface CategoryFormValues {
     [CATEGORY_FIELDS.NAME]: string;
     [CATEGORY_FIELDS.COLOR]: string;
-    [CATEGORY_FIELDS.ICON]: ICONS | '';
+    [CATEGORY_FIELDS.ICON]: ICON_NAME | '';
 }
 
 export const categoryInitialValues: CategoryFormValues = {

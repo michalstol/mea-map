@@ -1,19 +1,15 @@
 import React from 'react';
 import { useField } from 'formik';
 
-import { Field as FieldAtom, Input } from '@atoms/Field';
+import { FieldPropsBasic, Field as FieldAtom, Input } from '@atoms/Field';
 
-interface Props {
+interface Props extends FieldPropsBasic {
     testId?: string;
     className?: string;
-    name: string;
-    label: string;
-    type?: React.HTMLInputTypeAttribute;
-    disabled?: boolean;
 }
 
 function Field({ type = 'text', ...props }: Props): React.ReactElement {
-    const [field, meta] = useField(props.name);
+    const [field, meta, helper] = useField(props.name);
 
     return (
         <FieldAtom
@@ -23,7 +19,8 @@ function Field({ type = 'text', ...props }: Props): React.ReactElement {
             label={props.label}
             disabled={props.disabled}
             error={meta.error}
-            isInitiallyTouched={!!field.value}
+            isTouched={meta.initialTouched || meta.touched}
+            setTouched={helper.setTouched}
         >
             <Input type={type} disabled={props.disabled} {...field} />
         </FieldAtom>

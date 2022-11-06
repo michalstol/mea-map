@@ -4,7 +4,7 @@ import { Timestamp } from 'firebase/firestore';
 
 import { Uuid } from '@typings/common';
 import { Category } from '@typings/categories';
-import { ICONS } from '@typings/icons';
+import { ICON_NAME } from '@typings/icons';
 
 import {
     CATEGORY_FIELDS,
@@ -31,7 +31,7 @@ function FormCreateCategory(props: Props): React.ReactElement {
                 const newCategory: Category = {
                     ...data,
                     uuid: null,
-                    icon: icon as ICONS,
+                    icon: icon as ICON_NAME,
                     order: props.nextOrder,
                     createdBy: props.userUuid,
                     createAt: timestamp,
@@ -79,12 +79,13 @@ function FormCreateCategory(props: Props): React.ReactElement {
                                 Select icon
                             </option>
 
-                            {Object.keys(ICONS).map(
+                            {Object.keys(ICON_NAME).map(
                                 key =>
-                                    ICONS[key as ICONS] !== ICONS.FAVORITE && (
+                                    ICON_NAME[key as ICON_NAME] !==
+                                        ICON_NAME.FAVORITE && (
                                         <option
                                             key={key}
-                                            value={ICONS[key as ICONS]}
+                                            value={ICON_NAME[key as ICON_NAME]}
                                         >
                                             {key}
                                         </option>

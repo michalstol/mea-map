@@ -1,22 +1,26 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-interface Props {
-    testId?: string;
-    className?: string;
+export interface FieldPropsBasic {
     name: string;
     label: string;
+    type?: React.HTMLInputTypeAttribute;
     disabled?: boolean;
+}
+
+export interface FieldPropsExtra {
     error?: string;
+    isTouched: boolean;
+    setTouched?: (value: boolean, shouldValidate?: boolean) => void;
+}
+
+interface Props extends FieldPropsBasic, FieldPropsExtra {
+    testId?: string;
+    className?: string;
     children: React.ReactElement;
-    isInitiallyTouched?: boolean;
 }
 
 function FieldComponent(props: Props): React.ReactElement {
-    const [isTouched, setIsTouched] = React.useState<boolean>(
-        () => !!props.isInitiallyTouched
-    );
-
     const label = React.useCallback(
         () =>
             props.label
@@ -29,7 +33,7 @@ function FieldComponent(props: Props): React.ReactElement {
         [props.label]
     );
 
-    const onFocusHandler = () => setIsTouched(true);
+    const onClickHandler = () => props.setTouched?.(true);
 
     return (
         <Container
@@ -39,8 +43,8 @@ function FieldComponent(props: Props): React.ReactElement {
             hasError={!!props.error}
         >
             <Wrapper>
-                <Placeholder isTouched={isTouched}>{label()}</Placeholder>
-                <Label htmlFor={props.name} isTouched={isTouched}>
+                <Placeholder isTouched={props.isTouched}>{label()}</Placeholder>
+                <Label htmlFor={props.name} isTouched={props.isTouched}>
                     {label()}
                 </Label>
 
@@ -48,12 +52,13 @@ function FieldComponent(props: Props): React.ReactElement {
                     return React.cloneElement(
                         child,
                         {
-                            onFocus: () => {
-                                onFocusHandler();
-                                child.props.onFocus?.();
+                            ...child.props,
+                            onClick: () => {
+                                onClickHandler();
+                                child.props.onClick?.();
                             },
                         },
-                        null
+                        child.props.children
                     );
                 })}
             </Wrapper>
@@ -81,6 +86,7 @@ const Container = styled.div<{ isDisabled: boolean; hasError: boolean }>`
     --mea-field-placeholder-background: rgb(
         ${props => props.theme.pallete.white}
     );
+    --mea-field-transition: ${props => props.theme.transition.speed.normal};
 
     ${props =>
         props.hasError &&
@@ -125,14 +131,14 @@ const Wrapper = styled.div`
     width: 100%;
     margin-top: calc(${props => props.theme.fonts.lineHeight.caption} / 2);
     padding: var(--mea-field-padding);
-    font-family: ${props => props.theme.fonts.family.poppins};
     font-size: ${props => props.theme.fonts.size.body};
     font-weight: ${props => props.theme.fonts.weight.regular};
     line-height: var(--mea-field-line-height);
     border: 1px solid var(--mea-field-border);
     border-radius: ${props => props.theme.sizes.base_x2};
     background-color: var(--mea-field-background);
-    transition: border-color 300ms ease-out, background-color 300ms ease-out;
+    transition: border-color var(--mea-field-transition) ease-out,
+        background-color var(--mea-field-transition) ease-out;
 `;
 
 const Input = styled.input`
@@ -141,7 +147,7 @@ const Input = styled.input`
     width: 100%;
     max-width: 100%;
     color: var(--mea-field-color);
-    transition: color 300ms ease-out;
+    transition: color var(--mea-field-transition) ease-out;
     display: block;
     z-index: 1;
 `;
@@ -154,14 +160,14 @@ const Label = styled.label<{ isTouched: boolean }>`
     left: var(--mea-field-padding);
     color: var(--mea-field-placeholder-color);
     transform: translate(0, -50%);
-    transition: color 300ms ease-out;
+    transition: color var(--mea-field-transition) ease-out;
     overflow: hidden;
     pointer-events: none;
     z-index: 2;
 
     span {
         display: inline-block;
-        transition: transform 300ms ease-in-out;
+        transition: transform var(--mea-field-transition) ease-in-out;
 
         ${Array(5)
             .fill(null)
@@ -193,7 +199,7 @@ const Placeholder = styled.aside<{ isTouched: boolean }>`
     line-height: ${props => props.theme.fonts.lineHeight.caption};
     color: var(--mea-field-placeholder-color);
     transform: translate(0, -50%);
-    transition: color 300ms ease-out;
+    transition: color var(--mea-field-transition) ease-out;
     overflow: hidden;
     pointer-events: none;
     z-index: 2;
@@ -204,7 +210,8 @@ const Placeholder = styled.aside<{ isTouched: boolean }>`
         inset: 0;
         background-color: var(--mea-field-placeholder-background);
         transform: translate(0, 101%);
-        transition: transform 300ms ease-in-out, background-color 300ms ease-out;
+        transition: transform var(--mea-field-transition) ease-in-out,
+            background-color var(--mea-field-transition) ease-out;
         z-index: -1;
 
         ${props =>
@@ -217,7 +224,7 @@ const Placeholder = styled.aside<{ isTouched: boolean }>`
     span {
         display: inline-block;
         transform: translate(0, 101%);
-        transition: transform 300ms ease-in-out;
+        transition: transform var(--mea-field-transition) ease-in-out;
 
         ${Array(5)
             .fill(null)
@@ -249,7 +256,7 @@ const Error = styled.aside<{ isVisible: boolean }>`
     line-height: var(--mea-field-error-line-height);
     color: rgb(${props => props.theme.pallete.secondary});
     text-align: right;
-    transition: opacity 300ms ease-out;
+    transition: opacity var(--mea-field-transition) ease-out;
     pointer-events: none;
     display: none;
 
@@ -257,6 +264,7 @@ const Error = styled.aside<{ isVisible: boolean }>`
         props.isVisible &&
         css`
             display: block;
-            animation: showErrorAnimation 300ms ease-out alternate forwards;
+            animation: showErrorAnimation var(--mea-field-transition) ease-out
+                alternate forwards;
         `}
 `;

@@ -1,7 +1,7 @@
 import { Timestamp } from 'firebase/firestore';
 
 import { Uuid, Microtimestamp } from './common';
-import { ICONS } from './icons';
+import { ICON_NAME } from './icons';
 import { SharedUser, SharedUserDTO } from './shared';
 
 export interface CategoryDTO {
@@ -19,7 +19,7 @@ export interface Category {
     uuid: Uuid | null;
     name: string;
     color: string;
-    icon: ICONS;
+    icon: ICON_NAME;
     order: number;
     createdBy: Uuid;
     createAt: Microtimestamp;

@@ -45,10 +45,27 @@ declare module 'styled-components' {
             base_x9: string;
             base_x10: string;
         };
+        icons: {
+            sizes: {
+                normal: string;
+                small: string;
+                tiny: string;
+            };
+        };
         pallete: Pallete;
         colors: Colors;
         shadows: {
             normal: string;
+        };
+        transition: {
+            speed: {
+                fast: string;
+                normal: string;
+                slow: string;
+            };
+            easing: {
+                slideIn: string;
+            };
         };
         zIndexes: {
             controlButton: number;

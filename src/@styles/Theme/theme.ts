@@ -48,10 +48,27 @@ const theme: DefaultTheme = {
         base_x9: rem(baseScale * 9),
         base_x10: rem(baseScale * 10),
     },
+    icons: {
+        sizes: {
+            normal: rem(40),
+            small: rem(24),
+            tiny: rem(20),
+        },
+    },
     pallete,
     colors,
     shadows: {
         normal: `4px 6px 24px rgba(${pallete.black}, 0.15)`,
+    },
+    transition: {
+        speed: {
+            fast: '150ms',
+            normal: '300ms',
+            slow: '500ms',
+        },
+        easing: {
+            slideIn: 'cubic-bezier(0.24, 0.6, 0.11, 1)',
+        },
     },
     zIndexes: {
         controlButton: 101,
