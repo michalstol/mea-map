@@ -54,10 +54,12 @@ const Container = styled.div`
 
     @keyframes backdrop-animation {
         from {
-            opacity: 0;
+            backdrop-filter: blur(0);
+            background-color: transparent;
         }
         to {
-            opacity: 1;
+            backdrop-filter: blur(2px);
+            background-color: var(--mea-backdrop-color);
         }
     }
 
@@ -66,9 +68,8 @@ const Container = styled.div`
     z-index: 100;
 
     ${Backdrop} {
-        opacity: 0;
         animation: backdrop-animation
-            ${props => props.theme.transition.speed.fast} ease-out alternate
+            ${props => props.theme.transition.speed.slow} ease-out alternate
             forwards;
     }
 `;
