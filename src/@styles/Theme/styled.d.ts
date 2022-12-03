@@ -37,7 +37,9 @@ declare module 'styled-components' {
             base_x2: string;
             base_x2_5: string;
             base_x3: string;
+            base_x3_5: string;
             base_x4: string;
+            base_x4_5: string;
             base_x5: string;
             base_x6: string;
             base_x7: string;

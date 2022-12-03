@@ -26,3 +26,10 @@ export interface Category {
     updatedOn: Microtimestamp;
     sharedFor: SharedUser[];
 }
+
+export enum CATEGORY_FIELDS {
+    COLOR = 'COLOR',
+    ICON = 'ICON',
+    NAME = 'NAME',
+    DESCRIPTION = 'DESCRIPTION',
+}

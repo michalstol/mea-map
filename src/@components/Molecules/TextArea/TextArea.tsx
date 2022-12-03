@@ -13,7 +13,7 @@ interface Props {
 }
 
 function TextArea({ rows = 5, ...props }: Props): React.ReactElement {
-    const [field, meta] = useField(props.name);
+    const [field, meta, helper] = useField(props.name);
 
     return (
         <FieldAtom
@@ -23,7 +23,8 @@ function TextArea({ rows = 5, ...props }: Props): React.ReactElement {
             label={props.label}
             disabled={props.disabled}
             error={meta.error}
-            isInitiallyTouched={!!field.value}
+            isTouched={meta.initialTouched || meta.touched}
+            setTouched={helper.setTouched}
         >
             <Input
                 as="textarea"

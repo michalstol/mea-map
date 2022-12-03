@@ -30,8 +30,19 @@ function Row({ columns = 2, ...props }: Props): React.ReactElement {
 export { Row };
 
 const StyledRow = styled.div<{ columns: number }>`
+    --mea-grid-column-size: ${props =>
+        props.columns === 1
+            ? '100%'
+            : `calc(
+        100% / ${props.columns} - var(--mea-grid-gap) /
+            ${props.columns - 1}
+    )`};
+
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(${props => props.columns}, 1fr);
+    grid-template-columns: repeat(
+        ${props => props.columns},
+        var(--mea-grid-column-size)
+    );
     gap: var(--mea-grid-gap);
 `;
