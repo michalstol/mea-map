@@ -3,14 +3,14 @@ import styled, { css } from 'styled-components';
 
 export interface FieldPropsBasic {
     name: string;
-    label: string;
+    label?: string;
     type?: React.HTMLInputTypeAttribute;
     disabled?: boolean;
 }
 
 export interface FieldPropsExtra {
     error?: string;
-    isTouched: boolean;
+    isTouched?: boolean;
     setTouched?: (value: boolean, shouldValidate?: boolean) => void;
 }
 
@@ -24,12 +24,12 @@ function FieldComponent(props: Props): React.ReactElement {
     const label = React.useCallback(
         () =>
             props.label
-                .split(' ')
+                ?.split(' ')
                 .map((word, idx) => (
                     <span key={`${idx}-${word.toLowerCase()}`}>
                         {word}&nbsp;
                     </span>
-                )),
+                )) || '',
         [props.label]
     );
 
@@ -44,9 +44,11 @@ function FieldComponent(props: Props): React.ReactElement {
         >
             <Wrapper>
                 <Placeholder isTouched={props.isTouched}>{label()}</Placeholder>
-                <Label htmlFor={props.name} isTouched={props.isTouched}>
-                    {label()}
-                </Label>
+                {!!props.label && (
+                    <Label htmlFor={props.name} isTouched={props.isTouched}>
+                        {label()}
+                    </Label>
+                )}
 
                 {React.Children.map(props.children, child => {
                     return React.cloneElement(
@@ -77,10 +79,13 @@ Field.displayName = 'Field';
 export { Field, Input };
 
 const Container = styled.div<{ isDisabled: boolean; hasError: boolean }>`
+    --mea-field-margin: calc(
+        ${props => props.theme.fonts.lineHeight.caption} / 2
+    );
     --mea-field-padding: ${props => props.theme.sizes.base_x2};
     --mea-field-line-height: ${props => props.theme.fonts.lineHeight.body};
     --mea-field-color: rgb(${props => props.theme.pallete.black});
-    --mea-field-border: rgb(${props => props.theme.pallete.gray_E7});
+    --mea-field-border: 1px solid rgb(${props => props.theme.pallete.gray_E7});
     --mea-field-background: rgb(${props => props.theme.pallete.white});
     --mea-field-placeholder-color: rgb(${props => props.theme.pallete.gray_82});
     --mea-field-placeholder-background: rgb(
@@ -92,7 +97,8 @@ const Container = styled.div<{ isDisabled: boolean; hasError: boolean }>`
         props.hasError &&
         css`
             --mea-field-color: rgb(${props => props.theme.pallete.secondary});
-            --mea-field-border: rgb(${props => props.theme.pallete.secondary});
+            --mea-field-border: 1px solid
+                rgb(${props => props.theme.pallete.secondary});
             --mea-field-background: rgb(${props => props.theme.pallete.white});
             --mea-field-placeholder-color: rgb(
                 ${props => props.theme.pallete.secondary}
@@ -106,7 +112,8 @@ const Container = styled.div<{ isDisabled: boolean; hasError: boolean }>`
         props.isDisabled &&
         css`
             --mea-field-color: rgb(${props => props.theme.pallete.gray_82});
-            --mea-field-border: rgb(${props => props.theme.pallete.gray_E7});
+            --mea-field-border: 1px solid
+                rgb(${props => props.theme.pallete.gray_E7});
             --mea-field-background: rgb(
                 ${props => props.theme.pallete.gray_E7}
             );
@@ -129,12 +136,12 @@ const Container = styled.div<{ isDisabled: boolean; hasError: boolean }>`
 const Wrapper = styled.div`
     position: relative;
     width: 100%;
-    margin-top: calc(${props => props.theme.fonts.lineHeight.caption} / 2);
+    margin-top: var(--mea-field-margin);
     padding: var(--mea-field-padding);
     font-size: ${props => props.theme.fonts.size.body};
     font-weight: ${props => props.theme.fonts.weight.regular};
     line-height: var(--mea-field-line-height);
-    border: 1px solid var(--mea-field-border);
+    border: var(--mea-field-border);
     border-radius: ${props => props.theme.sizes.base_x2};
     background-color: var(--mea-field-background);
     transition: border-color var(--mea-field-transition) ease-out,
@@ -150,9 +157,15 @@ const Input = styled.input`
     transition: color var(--mea-field-transition) ease-out;
     display: block;
     z-index: 1;
+
+    &:not(:focus) {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+    }
 `;
 
-const Label = styled.label<{ isTouched: boolean }>`
+const Label = styled.label<{ isTouched?: boolean }>`
     --mea-field-label-touched: translate(0, 101%);
 
     position: absolute;
@@ -187,7 +200,7 @@ const Label = styled.label<{ isTouched: boolean }>`
     }
 `;
 
-const Placeholder = styled.aside<{ isTouched: boolean }>`
+const Placeholder = styled.aside<{ isTouched?: boolean }>`
     --mea-field-placeholder-touched: translate(0, 0);
 
     position: absolute;

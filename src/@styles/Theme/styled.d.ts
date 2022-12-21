@@ -53,6 +53,11 @@ declare module 'styled-components' {
                 small: string;
                 tiny: string;
             };
+            weight: {
+                normal: number;
+                semibold: number;
+                bold: number;
+            };
         };
         pallete: Pallete;
         colors: Colors;

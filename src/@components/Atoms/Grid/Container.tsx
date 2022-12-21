@@ -4,6 +4,7 @@ import styled, { css } from 'styled-components';
 type Variant = 'normal' | 'no-padding';
 
 interface Props {
+    as?: string;
     testId?: string;
     className?: string;
     children: React.ReactNode;
@@ -13,6 +14,7 @@ interface Props {
 function Container(props: Props): React.ReactElement {
     return (
         <StyledContainer
+            as={props.as as any}
             className={props.className}
             data-testid={props.testId}
             variant={props.variant}

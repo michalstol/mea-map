@@ -56,6 +56,11 @@ const theme: DefaultTheme = {
             small: rem(24),
             tiny: rem(20),
         },
+        weight: {
+            normal: 400,
+            semibold: 600,
+            bold: 800,
+        },
     },
     pallete,
     colors,
