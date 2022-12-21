@@ -18,8 +18,8 @@
     "paths": {
       "@configs/*": ["./src/@configs/*"],
       "@facades/*": ["./src/@facades/*"],
-      "@redux/*": ["./src/@redux/*"],
       "@typings/*": ["./src/@typings/*"],
+      "@query/*": ["./src/@query/*"],
       "@hooks/*": ["./src/@hooks/*"],
       "@helpers/*": ["./src/@helpers/*"],
       "@styles/*": ["./src/@styles/*"],

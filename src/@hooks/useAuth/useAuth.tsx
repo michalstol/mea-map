@@ -1,12 +1,11 @@
 import React from 'react';
-import { onAuthStateChanged } from 'firebase/auth';
-
-import { auth } from '@configs/firebase';
 
 import { STORAGE_NAMES } from '@typings/storage';
 import { FirebaseUser } from '@typings/users';
 
 import { storageFacade } from '@facades/storageFacade';
+
+import { useAuth as useAuthQuery } from '@query/hooks/useAuth';
 
 interface BaseAuthContextProps {
     user: FirebaseUser | null;
@@ -31,36 +30,26 @@ interface AuthProviderProps {
 }
 
 function AuthProvider(props: AuthProviderProps): React.ReactElement {
-    const [user, setUser] = React.useState<FirebaseUser | null>(
-        initialState.user
-    );
-    const [connected, setConnected] = React.useState(false);
+    const user = useAuthQuery(initialState.user || undefined);
 
     React.useEffect(() => {
-        const subscription = onAuthStateChanged(auth, newUser => {
-            setUser(newUser);
+        if (!user.isFetched) return;
 
-            if (!connected) {
-                setConnected(true);
-            }
-        });
-
-        return subscription;
-    }, [connected]);
-
-    React.useEffect(() => {
         storageFacade.set(STORAGE_NAMES.AUTH, {
-            user,
-            loggedIn: !!user,
+            user: user.data || null,
+            loggedIn: !!user.data,
         });
-    }, [user]);
+    }, [user.isFetched || user.data]);
 
     return (
         <AuthContext.Provider
             value={{
-                connected,
-                user: user,
-                loggedIn: !!user && connected,
+                ...initialState,
+                ...(user.isFetched && {
+                    connected: true,
+                    user: user.data || null,
+                    loggedIn: !!user.data,
+                }),
             }}
         >
             {props.children}
