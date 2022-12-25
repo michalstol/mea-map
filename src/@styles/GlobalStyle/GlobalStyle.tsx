@@ -45,6 +45,10 @@ const GlobalStyle = createGlobalStyle`
     }
 
     :root {
+        // GRID VARS
+        --mea-grid-padding: ${props => props.theme.sizes.base_x5};
+
+        // PAGE VARS
         --mea-page-scale: 0.8;
         --mea-page-border-radius: ${props => props.theme.sizes.base_x4};
         --mea-page-transition: ${({ theme }) =>

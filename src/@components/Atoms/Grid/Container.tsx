@@ -27,7 +27,6 @@ function Container(props: Props): React.ReactElement {
 export { Container };
 
 const StyledContainer = styled.div<{ variant?: Variant }>`
-    --mea-grid-padding: ${props => props.theme.sizes.base_x5};
     --mea-grid-gap: ${props => props.theme.sizes.base_x2_5};
 
     width: 100%;
