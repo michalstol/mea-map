@@ -2,9 +2,9 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import { Timestamp } from 'firebase/firestore';
 
-import { Uuid } from '../../@types/common';
-import { Marker } from '../../@types/markers';
-import { Category } from '../../@types/categories';
+import { Uuid } from '@uTypes/common';
+import { Marker } from '@uTypes/markers';
+import { Category } from '@uTypes/categories';
 
 import { MapContextProps } from '@hooks/useMap';
 

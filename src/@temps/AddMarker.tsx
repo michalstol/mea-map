@@ -5,8 +5,8 @@ import { useAppDispatch } from '@redux/hooks';
 import { addMarkerAction } from '@redux/markers';
 import { getFetchStatus, getCategories } from '@redux/categories';
 
-import { Marker } from '../@types/markers';
-import { LOADING_STATE } from '../@types/loadingState';
+import { Marker } from '@uTypes/markers';
+import { LOADING_STATE } from '@uTypes/loadingState';
 
 import { useAuth } from '@hooks/useAuth';
 import { useMap } from '@hooks/useMap';

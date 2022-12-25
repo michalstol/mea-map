@@ -2,7 +2,7 @@ import React from 'react';
 import styled, { useTheme } from 'styled-components';
 import { useField } from 'formik';
 
-import { Category } from '../../../@types/categories';
+import { Category } from '@uTypes/categories';
 
 import { FieldPropsBasic, Field } from '@atoms/Field';
 import { CategoryOption, Circle } from '@atoms/CategoryOption';

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { LOADING_STATE } from '../@types/loadingState';
+import { LOADING_STATE } from '@uTypes/loadingState';
 
 import { useAppDispatch } from '@redux/hooks';
 import { fetchMarkersAction } from '@redux/markers/markers.actions';

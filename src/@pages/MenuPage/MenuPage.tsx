@@ -3,8 +3,8 @@ import styled, { css } from 'styled-components';
 
 import { rem } from '@styles/helpers';
 
-import { ICON_NAME } from '../../@types/icons';
-import { ROUTES } from '../../@types/routing';
+import { ICON_NAME } from '@uTypes/icons';
+import { ROUTES } from '@uTypes/routing';
 
 import { useAuth } from '@hooks/useAuth';
 import { useRoute } from '@hooks/useRoute';

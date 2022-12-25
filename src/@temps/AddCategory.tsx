@@ -8,11 +8,11 @@ import {
     getCategories,
 } from '@redux/categories';
 
-import { Category } from '../@types/categories';
+import { Category } from '@uTypes/categories';
 import { useAuth } from '@hooks/useAuth';
 
 import { FormCreateCategory } from '@temps/FormCreateCategory';
-import { LOADING_STATE } from '../@types/loadingState';
+import { LOADING_STATE } from '@uTypes/loadingState';
 
 function AddCategory(): React.ReactElement | null {
     const dispatch = useAppDispatch();

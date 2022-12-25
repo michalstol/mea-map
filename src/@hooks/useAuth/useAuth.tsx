@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { STORAGE_NAMES } from '../../@types/storage';
-import { FirebaseUser } from '../../@types/users';
+import { STORAGE_NAMES } from '@uTypes/storage';
+import { FirebaseUser } from '@uTypes/users';
 
 import { storageFacade } from '@facades/storageFacade';
 

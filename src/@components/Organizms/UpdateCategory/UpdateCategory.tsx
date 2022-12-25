@@ -2,8 +2,8 @@ import React from 'react';
 import styled, { useTheme } from 'styled-components';
 import { Formik, Form } from 'formik';
 
-import { CATEGORY_FIELDS } from '../../../@types/categories';
-import { ICON_NAME } from '../../../@types/icons';
+import { CATEGORY_FIELDS } from '@uTypes/categories';
+import { ICON_NAME } from '@uTypes/icons';
 
 import { Icon } from '@atoms/Icon';
 import { Button } from '@atoms/Button';

@@ -2,9 +2,9 @@ import React from 'react';
 import { Formik, Form, Field } from 'formik';
 import { Timestamp } from 'firebase/firestore';
 
-import { Uuid } from '../../@types/common';
-import { Category } from '../../@types/categories';
-import { ICON_NAME } from '../../@types/icons';
+import { Uuid } from '@uTypes/common';
+import { Category } from '@uTypes/categories';
+import { ICON_NAME } from '@uTypes/icons';
 
 import {
     CATEGORY_FIELDS,

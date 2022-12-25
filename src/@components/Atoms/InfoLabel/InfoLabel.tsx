@@ -3,7 +3,7 @@ import styled, { useTheme } from 'styled-components';
 
 import Pallete from '@styles/Theme/pallete';
 
-import { ICON_NAME } from '../../../@types/icons';
+import { ICON_NAME } from '@uTypes/icons';
 
 import { Icon } from '@atoms/Icon';
 import { Ellipsis } from '@atoms/Ellipsis';

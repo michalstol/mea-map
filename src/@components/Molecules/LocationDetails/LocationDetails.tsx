@@ -7,7 +7,7 @@ import { LocationHeading } from '@atoms/LocationHeading';
 import { InfoLabel, Props as InfoLabelProps } from '@atoms/InfoLabel';
 import { Icon } from '@atoms/Icon';
 import { theme } from '@styles/Theme';
-import { ICON_NAME } from '../../../@types/icons';
+import { ICON_NAME } from '@uTypes/icons';
 
 interface Props {
     icon: ICON_NAME.ADD | ICON_NAME.NAVIGATION;

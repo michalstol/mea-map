@@ -6,8 +6,8 @@
 import React from 'react';
 import styled, { useTheme } from 'styled-components';
 
-import { ICON_NAME } from '../../../@types/icons';
-import { ROUTES } from '../../../@types/routing';
+import { ICON_NAME } from '@uTypes/icons';
+import { ROUTES } from '@uTypes/routing';
 
 import { Icon } from '@atoms/Icon';
 

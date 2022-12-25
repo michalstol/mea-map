@@ -24,8 +24,8 @@ export default defineConfig({
                 replacement: path.resolve(__dirname, './src/@facades'),
             },
             {
-                find: '@types',
-                replacement: path.resolve(__dirname, './src/@types'),
+                find: '@uTypes',
+                replacement: path.resolve(__dirname, './src/@uTypes'),
             },
             {
                 find: '@hooks',

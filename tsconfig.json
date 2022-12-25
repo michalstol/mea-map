@@ -17,7 +17,7 @@
     "jsx": "react-jsx",
     "paths": {
       "@configs/*": ["./src/@configs/*"],
-      "@types/*": ["./src/@types/*"],
+      "@uTypes/*": ["./src/@uTypes/*"],
       "@styles/*": ["./src/@styles/*"],
       "@helpers/*": ["./src/@helpers/*"],
       "@hooks/*": ["./src/@hooks/*"],
