@@ -20,6 +20,7 @@ function Router() {
     const [isMenuOpened, setIsMenuOpened] = React.useState(false);
 
     const isUserLoggedIn = !!user;
+
     const toggleMenu = React.useCallback(() => {
         if (!isUserLoggedIn) return;
 
@@ -46,6 +47,7 @@ function Router() {
 
             {/* App page "/" - z-index 2 */}
             <MapPageTransform isOnStage={!isMenuOpened}>
+                <MapOverlay isOnStage={!isMenuOpened} onClick={toggleMenu} />
                 <MapPage onShowMenu={toggleMenu} />
             </MapPageTransform>
             <MapPageBackground isOnStage={!isMenuOpened} />
@@ -113,6 +115,21 @@ const MapPageTransform = styled(Page)<{ isOnStage: boolean }>`
                     0
                 )
                 scale(var(--mea-page-scale));
+        `}
+`;
+
+const MapOverlay = styled.aside<{ isOnStage: boolean }>`
+    position: absolute;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    background-color: transparent;
+    pointer-events: none;
+
+    ${props =>
+        !props.isOnStage &&
+        css`
+            pointer-events: all;
         `}
 `;
 
