@@ -58,6 +58,14 @@ export default defineConfig({
                 replacement: path.resolve(__dirname, './src/@helpers'),
             },
             {
+                find: '@pages',
+                replacement: path.resolve(__dirname, './src/@pages'),
+            },
+            {
+                find: '@views',
+                replacement: path.resolve(__dirname, './src/@views'),
+            },
+            {
                 find: '@temps',
                 replacement: path.resolve(__dirname, './src/@temps'),
             },
