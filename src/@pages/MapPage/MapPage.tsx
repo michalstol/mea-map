@@ -1,5 +1,9 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css, useTheme } from 'styled-components';
+
+import { Page } from '@atoms/Page';
+
+import { GoogleAuth } from '@features/GoogleAuth';
 
 interface Props {
     testId?: string;
@@ -7,7 +11,14 @@ interface Props {
 }
 
 function MapPage(props: Props): React.ReactElement {
-    return <div onClick={props.onShowMenu}>ASD</div>;
+    return (
+        <Page>
+            <div onClick={props.onShowMenu}>
+                asd
+                <GoogleAuth />
+            </div>
+        </Page>
+    );
 }
 
 export { MapPage };

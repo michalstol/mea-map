@@ -12,7 +12,6 @@ import { Page } from '@atoms/Page';
 import { MenuPage } from '@pages/MenuPage';
 import { MapPage } from '@pages/MapPage';
 
-// every page must be mounted after initialized app
 function Router() {
     const { height } = useWindow();
     const { user } = useAuth();
@@ -27,25 +26,32 @@ function Router() {
         setIsMenuOpened(state => !state);
     }, [isUserLoggedIn]);
 
+    // hide menu when user logged out
+    React.useEffect(() => {
+        if (isUserLoggedIn) return;
+        if (!isMenuOpened) return;
+
+        setIsMenuOpened(false);
+    }, [isUserLoggedIn, isMenuOpened]);
+
     return (
-        // Main page must have viewport size
         <Container height={height}>
-            {/* User pages rotates - z-index 3 */}
-            {/* These pages are depend from current route */}
-            <Route path={ROUTES.SETTINGS}>
-                <div>SETTINGS</div>
-            </Route>
-            <Route path={ROUTES.LOCATIONS}>
-                <div>LOCATIONS</div>
-            </Route>
-            <Route path={ROUTES.CATEGORIES}>
-                <div>CATEGORIES</div>
-            </Route>
+            {isUserLoggedIn && (
+                <React.Fragment>
+                    <Route path={ROUTES.SETTINGS}>
+                        <div>SETTINGS</div>
+                    </Route>
+                    <Route path={ROUTES.LOCATIONS}>
+                        <div>LOCATIONS</div>
+                    </Route>
+                    <Route path={ROUTES.CATEGORIES}>
+                        <div>CATEGORIES</div>
+                    </Route>
 
-            {/* Page but it always under - z-index 1 */}
-            <MenuPage />
+                    <MenuPage />
+                </React.Fragment>
+            )}
 
-            {/* App page "/" - z-index 2 */}
             <MapPageTransform isOnStage={!isMenuOpened}>
                 <MapOverlay isOnStage={!isMenuOpened} onClick={toggleMenu} />
                 <MapPage onShowMenu={toggleMenu} />
@@ -70,6 +76,7 @@ export default Router;
 
 const Container = styled(Page)<{ height: number }>`
     height: ${props => props.height}px;
+    background-color: rgb(${props => props.theme.pallete.primary});
     overflow: hidden;
 `;
 

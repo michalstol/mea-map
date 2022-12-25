@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { css, useTheme } from 'styled-components';
 
+import { auth } from '@configs/firebase';
+
 import { rem } from '@styles/helpers';
 
 import { ROUTES } from '@uTypes/routing';
@@ -36,21 +38,11 @@ function MenuPage(props: Props): React.ReactElement {
     return (
         <MenuPageContainer data-testid={props.testId}>
             <Container>
-                {
-                    !!user && (
-                        <Avatar
-                            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80"
-                            name={'Lorem Ipsum'}
-                            email="lorem.impsum.doloris@me.anet"
-                        />
-                    )
-                    // <Avatar
-                    //         // src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=100&q=80"
-                    //         src={user.photoURL || ''}
-                    //         name={user.displayName || ''}
-                    //         email={user.email || ''}
-                    //     />
-                }
+                <Avatar
+                    src={user!.photoURL || ''}
+                    name={user!.displayName || ''}
+                    email={user!.email || ''}
+                />
 
                 <Navigation>
                     <NavList>
@@ -88,7 +80,7 @@ function MenuPage(props: Props): React.ReactElement {
                     <MenuLink<string>
                         href="#"
                         icon={<LogOutIcon style={iconSize()} />}
-                        onClick={() => console.log('sign out')}
+                        onClick={() => auth.signOut()}
                     >
                         Signout
                     </MenuLink>
