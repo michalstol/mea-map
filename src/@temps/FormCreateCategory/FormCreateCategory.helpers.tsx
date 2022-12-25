@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
 
-import { ICON_NAME } from '@typings/icons';
+import { ICON_NAME } from '../../@types/icons';
 
 export enum CATEGORY_FIELDS {
     NAME = 'name',

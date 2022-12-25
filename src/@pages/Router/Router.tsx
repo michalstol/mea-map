@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { css } from 'styled-components';
 
-import { ROUTES } from '@typings/routing';
+import { ROUTES } from '../../@types/routing';
 
 import { useWindow } from '@hooks/useWindow';
 import { useRoute } from '@hooks/useRoute';

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled, { useTheme, css } from 'styled-components';
 
-import { ICON_NAME } from '@typings/icons';
+import { ICON_NAME } from '../../../@types/icons';
 
 import { Icon } from '@atoms/Icon';
 

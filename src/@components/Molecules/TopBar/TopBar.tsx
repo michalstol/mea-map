@@ -4,7 +4,7 @@ import styled, { css, useTheme } from 'styled-components';
 import Grid from '@atoms/Grid';
 import { Field, Input } from '@atoms/Field';
 import { Icon } from '@atoms/Icon';
-import { ICON_NAME } from '@typings/icons';
+import { ICON_NAME } from '../../../@types/icons';
 import { rem } from '@styles/helpers';
 
 enum TOP_BAR_VARIANTS {

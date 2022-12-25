@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ROUTES, Query } from '@typings/routing';
+import { ROUTES, Query } from '../../@types/routing';
 
 interface Location {
     path: ROUTES;

@@ -1,10 +1,18 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
 import * as path from 'path';
+import { defineConfig } from 'vite';
+import svgr from 'vite-plugin-svgr';
+import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [react()],
+    plugins: [
+        svgr({
+            svgrOptions: {
+                icon: true,
+            },
+        }),
+        react(),
+    ],
     resolve: {
         alias: [
             {
@@ -16,8 +24,8 @@ export default defineConfig({
                 replacement: path.resolve(__dirname, './src/@facades'),
             },
             {
-                find: '@typings',
-                replacement: path.resolve(__dirname, './src/@typings'),
+                find: '@types',
+                replacement: path.resolve(__dirname, './src/@types'),
             },
             {
                 find: '@hooks',
@@ -64,6 +72,10 @@ export default defineConfig({
             {
                 find: '@views',
                 replacement: path.resolve(__dirname, './src/@views'),
+            },
+            {
+                find: '@svg',
+                replacement: path.resolve(__dirname, './src/@svg'),
             },
             {
                 find: '@temps',

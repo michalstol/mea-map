@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { LOADING_STATE } from '@typings/loadingState';
+import { LOADING_STATE } from '../@types/loadingState';
 
 import { useAppDispatch } from '@redux/hooks';
 import { fetchCategoriesAction } from '@redux/categories/categories.actions';

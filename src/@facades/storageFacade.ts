@@ -1,6 +1,6 @@
 import { STORAGE_FACADE_PREFIX } from '@configs/const';
-import { GenericObject } from '@typings/genericObject';
-import { STORAGE_NAMES } from '@typings/storage';
+import { GenericObject } from '../@types/genericObject';
+import { STORAGE_NAMES } from '../@types/storage';
 
 function setItem<T = GenericObject>(key: STORAGE_NAMES, value: T): void {
     localStorage?.setItem(

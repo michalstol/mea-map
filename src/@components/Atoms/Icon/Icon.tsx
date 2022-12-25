@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 /**
- * Use ICON_NAMES from `@typings/icons`.
+ * Use ICON_NAMES from `@types/icons`.
  * Example usage: `<Icon size={24}>search</Icon>`
  */
 const Icon = styled.div<{ size: string; weight?: number }>`
