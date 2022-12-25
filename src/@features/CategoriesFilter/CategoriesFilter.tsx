@@ -1,6 +1,8 @@
 import React from 'react';
 import styled, { css, useTheme } from 'styled-components';
 
+import { useCategories } from '@query/hooks';
+
 import { useAuth } from '@hooks/useAuth';
 
 import { ReactComponent as GridIcon } from '@svg/iconic/grid.svg';
@@ -13,6 +15,7 @@ import { getIconSize } from '@helpers/getIconSize';
 function CategoriesFilter(): React.ReactElement | null {
     const theme = useTheme();
     const { user } = useAuth();
+    const { data, query } = useCategories(user!.uid);
 
     const [selected, useSelected] = React.useState(() => {
         // find favorite category ID
@@ -33,6 +36,10 @@ function CategoriesFilter(): React.ReactElement | null {
             behavior: 'smooth',
         });
     };
+
+    React.useEffect(() => {
+        console.log(query, data);
+    }, [query]);
 
     if (!user) {
         return null;
