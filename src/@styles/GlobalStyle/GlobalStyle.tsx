@@ -1,11 +1,19 @@
 import { createGlobalStyle } from 'styled-components';
 
+import { rem } from '@styles/helpers';
+
 import { defaultFontSize } from '@configs/const';
 
 const GlobalStyle = createGlobalStyle`
     html,
     body {
         margin: 0;
+    }
+
+    html, body, #root {
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
     }
 
     html {
@@ -29,6 +37,19 @@ const GlobalStyle = createGlobalStyle`
         &:visited {
             outline: none;
         }
+    }
+
+    a {
+        color: currentColor;
+        text-decoration: none;
+    }
+
+    :root {
+        --mea-page-scale: 0.8;
+        --mea-page-border-radius: ${props => props.theme.sizes.base_x4};
+        --mea-page-transition: ${({ theme }) =>
+            `${theme.transition.speed.slow} ${theme.transition.easing.slideIn}`};
+        --mea-map-page-side-size: ${rem(115)};
     }
 `;
 

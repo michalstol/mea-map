@@ -8,24 +8,34 @@ import { GlobalStyle } from '@styles/GlobalStyle';
 import '@styles/Typography/typography.css';
 
 import { queryClient } from '@query/client';
+
 import { AuthProvider } from '@hooks/useAuth';
+import { RouteProvider } from '@hooks/useRoute';
+import { WindowProvider } from '@hooks/useWindow';
+
+import Router from '@pages/Router/Router';
+
 import { AppState } from '@temps/AppState';
 
 function App() {
     return (
-        <ThemeProvider theme={theme}>
-            <GlobalStyle />
+        <WindowProvider>
+            <ThemeProvider theme={theme}>
+                <GlobalStyle />
 
-            <QueryClientProvider client={queryClient}>
-                <ReactQueryDevtools initialIsOpen={false} />
+                <QueryClientProvider client={queryClient}>
+                    <ReactQueryDevtools initialIsOpen={false} />
 
-                <AuthProvider>
-                    <AppState />
+                    <AuthProvider>
+                        <RouteProvider>
+                            <AppState />
 
-                    <div>welcome</div>
-                </AuthProvider>
-            </QueryClientProvider>
-        </ThemeProvider>
+                            <Router />
+                        </RouteProvider>
+                    </AuthProvider>
+                </QueryClientProvider>
+            </ThemeProvider>
+        </WindowProvider>
     );
 }
 

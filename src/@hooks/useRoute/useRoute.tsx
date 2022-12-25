@@ -43,6 +43,7 @@ const initLocation: Location = (function () {
 })();
 
 interface RouteContextProps extends Location {
+    history: Location[];
     change: (
         path: ROUTES,
         query?: Query[],
@@ -52,6 +53,7 @@ interface RouteContextProps extends Location {
 
 const RouteContext = React.createContext<RouteContextProps>({
     ...initLocation,
+    history: [{ ...initLocation }],
     change: () => {},
 });
 
@@ -60,6 +62,9 @@ interface RouteProviderProps {
 }
 
 function RouteProvider(props: RouteProviderProps): React.ReactElement {
+    const [history, setHistory] = React.useState<Location[]>(() => [
+        { ...initLocation },
+    ]);
     const [path, setPath] = React.useState<ROUTES>(() => initLocation.path);
     const [queries, setQueries] = React.useState<Query[]>(
         () => initLocation.queries
@@ -70,6 +75,7 @@ function RouteProvider(props: RouteProviderProps): React.ReactElement {
             value={{
                 path,
                 queries,
+                history,
                 change: (
                     newPath: ROUTES,
                     newQueries?: Query[],
@@ -77,6 +83,10 @@ function RouteProvider(props: RouteProviderProps): React.ReactElement {
                 ) => {
                     setPath(newPath);
                     setQueries(newQueries ?? []);
+                    setHistory(current => [
+                        ...current,
+                        { path: newPath, queries: newQueries ?? [] },
+                    ]);
 
                     window.history.pushState(
                         state,
