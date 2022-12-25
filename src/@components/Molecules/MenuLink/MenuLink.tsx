@@ -4,35 +4,31 @@
  */
 
 import React from 'react';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
 
-import { ICON_NAME } from '@uTypes/icons';
 import { ROUTES } from '@uTypes/routing';
 
-import { Icon } from '@atoms/Icon';
-
-interface Props {
+interface Props<T = ROUTES> {
     className?: string;
-    icon: ICON_NAME;
-    href: ROUTES;
+    icon: React.ReactElement;
+    href: T;
     children: React.ReactNode;
-    onClick: (path: ROUTES) => void;
+    onClick: (path: T) => void;
 }
 
-function MenuLink(props: Props): React.ReactElement {
-    const theme = useTheme();
+function MenuLink<T = ROUTES>(props: Props<T>): React.ReactElement {
     const onClick = (e: React.SyntheticEvent<HTMLAnchorElement>) => {
         e.preventDefault();
         props.onClick(props.href);
     };
 
     return (
-        <Link className={props.className} href={props.href} onClick={onClick}>
-            <IconWrapper>
-                <Icon as="span" size={theme.icons.sizes.small}>
-                    {props.icon}
-                </Icon>
-            </IconWrapper>
+        <Link
+            className={props.className}
+            href={props.href as string}
+            onClick={onClick}
+        >
+            <IconWrapper>{props.icon}</IconWrapper>
 
             <span>{props.children}</span>
         </Link>

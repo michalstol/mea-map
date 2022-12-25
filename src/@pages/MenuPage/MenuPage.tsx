@@ -1,13 +1,19 @@
 import React from 'react';
-import styled, { css } from 'styled-components';
+import styled, { css, useTheme } from 'styled-components';
 
 import { rem } from '@styles/helpers';
 
-import { ICON_NAME } from '@uTypes/icons';
 import { ROUTES } from '@uTypes/routing';
+
+import { getIconSize } from '@helpers/getIconSize';
 
 import { useAuth } from '@hooks/useAuth';
 import { useRoute } from '@hooks/useRoute';
+
+import { ReactComponent as PinIcon } from '@svg/iconic/pin.svg';
+import { ReactComponent as GridIcon } from '@svg/iconic/grid.svg';
+import { ReactComponent as SettingsIcon } from '@svg/iconic/settings.svg';
+import { ReactComponent as LogOutIcon } from '@svg/iconic/log-out.svg';
 
 import { Page } from '@atoms/Page';
 import Grid from '@atoms/Grid';
@@ -21,8 +27,11 @@ interface Props {
 }
 
 function MenuPage(props: Props): React.ReactElement {
+    const theme = useTheme();
     const { change } = useRoute();
     const { user } = useAuth();
+
+    const iconSize = React.useCallback(() => getIconSize(theme, 'small'), []);
 
     return (
         <MenuPageContainer data-testid={props.testId}>
@@ -48,7 +57,7 @@ function MenuPage(props: Props): React.ReactElement {
                         <li>
                             <MenuLink
                                 href={ROUTES.LOCATIONS}
-                                icon={ICON_NAME.LOCATION_ON}
+                                icon={<PinIcon style={iconSize()} />}
                                 onClick={change}
                             >
                                 My Locations
@@ -57,7 +66,7 @@ function MenuPage(props: Props): React.ReactElement {
                         <li>
                             <MenuLink
                                 href={ROUTES.CATEGORIES}
-                                icon={ICON_NAME.LOCATION_ON}
+                                icon={<GridIcon style={iconSize()} />}
                                 onClick={change}
                             >
                                 Categories
@@ -66,7 +75,7 @@ function MenuPage(props: Props): React.ReactElement {
                         <li>
                             <MenuLink
                                 href={ROUTES.SETTINGS}
-                                icon={ICON_NAME.LOCATION_ON}
+                                icon={<SettingsIcon style={iconSize()} />}
                                 onClick={change}
                             >
                                 Settings
@@ -75,9 +84,15 @@ function MenuPage(props: Props): React.ReactElement {
                     </NavList>
                 </Navigation>
 
-                {/* <div>
-                    <MenuLink icon={ICON_NAME.LOCATION_ON}>Signout</MenuLink>
-                </div> */}
+                <div>
+                    <MenuLink<string>
+                        href="#"
+                        icon={<LogOutIcon style={iconSize()} />}
+                        onClick={() => console.log('sign out')}
+                    >
+                        Signout
+                    </MenuLink>
+                </div>
             </Container>
         </MenuPageContainer>
     );
