@@ -1,17 +1,19 @@
+import { rem } from '@styles/helpers';
 import { DefaultTheme } from 'styled-components';
-
-interface Return {
-    width: string;
-    height: string;
-}
 
 function getIconSize(
     theme: DefaultTheme,
-    size: keyof DefaultTheme['icons']['sizes']
-): Return {
+    size: keyof DefaultTheme['icons']['sizes'] | number
+): {
+    width: string;
+    height: string;
+} {
+    const iSize =
+        typeof size === 'number' ? rem(size) : theme.icons.sizes[size];
+
     return {
-        width: theme.icons.sizes[size],
-        height: theme.icons.sizes[size],
+        width: iSize,
+        height: iSize,
     };
 }
 

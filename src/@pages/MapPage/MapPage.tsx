@@ -7,6 +7,7 @@ import { Page } from '@atoms/Page';
 
 import { GoogleAuth } from '@features/GoogleAuth';
 import { CategoriesFilter } from '@features/CategoriesFilter';
+import { Navigate } from '@features/Navigate';
 
 interface Props {
     testId?: string;
@@ -23,11 +24,11 @@ function MapPage(props: Props): React.ReactElement {
                     'url("https://i.stack.imgur.com/k0akf.png") 100% 100%',
             }}
         >
-            <header></header>
-            <div onClick={props.onShowMenu}>asd</div>
+            <header onClick={props.onShowMenu}>header</header>
+            <div>asd</div>
 
             {/* position button */}
-            <div></div>
+            <Navigate />
 
             {/* footer with GoogleAuth or CategoriesFilter */}
             <Footer>
@@ -41,8 +42,10 @@ function MapPage(props: Props): React.ReactElement {
 export { MapPage };
 
 const PageWrapper = styled(Page)`
+    max-height: 100%;
     display: grid;
     grid-template-rows: auto 1fr auto auto;
+    gap: ${props => props.theme.sizes.base_x5};
 `;
 
 const Footer = styled.footer`

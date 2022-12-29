@@ -54,6 +54,8 @@ const GlobalStyle = createGlobalStyle`
         --mea-page-transition: ${({ theme }) =>
             `${theme.transition.speed.slow} ${theme.transition.easing.slideIn}`};
         --mea-map-page-side-size: ${rem(115)};
+
+        // SKELETON VARS
     }
 `;
 

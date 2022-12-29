@@ -4,3 +4,10 @@ export enum LOADING_STATE {
     FULFILLED = 'FULFILLED',
     REJECTED = 'REJECTED',
 }
+
+export enum QUERY_LOADING_STATE {
+    IDLE = 'idle',
+    LOADING = 'loading',
+    ERROR = 'error',
+    SUCCESS = 'success',
+}

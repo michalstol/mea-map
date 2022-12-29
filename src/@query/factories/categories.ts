@@ -1,7 +1,7 @@
 import { Timestamp } from 'firebase/firestore';
 
 import { Uuid } from '@uTypes/common';
-import { ICON_NAME } from '@uTypes/icons';
+import { CATEGORIES_ICON_NAME } from '@uTypes/icons';
 import { Category, CategoryDTO } from '@uTypes/categories';
 import { SharedUser, SharedUserDTO } from '@uTypes/shared';
 import { USER_PERMISSIONS } from '@uTypes/users';
@@ -14,7 +14,7 @@ function categoryFactoryFromDTO(
     const category: Category = {
         ...rest,
         uuid: categoryUuid,
-        icon: icon as ICON_NAME,
+        icon: icon as CATEGORIES_ICON_NAME,
         createAt: createAt.toMillis(),
         updatedOn: updatedOn.toMillis(),
         sharedFor: sharedFor.map(
